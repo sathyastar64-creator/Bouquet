@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Bouquet Treatments | More than a surprise. A memory.</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#1b1c19",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#5e5e5b",
+                        "surface-container": "#f0eded",
+                        "on-secondary-container": "#7a532a",
+                        "background": "#fcf9f8",
+                        "on-error": "#ffffff",
+                        "on-background": "#1b1c1c",
+                        "surface": "#fcf9f8",
+                        "inverse-primary": "#c8c6c2",
+                        "on-secondary-fixed": "#2c1600",
+                        "inverse-surface": "#303030",
+                        "tertiary-fixed-dim": "#f2b8b8",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e4e2e1",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f3f0f0",
+                        "secondary-fixed": "#ffdcbd",
+                        "secondary-fixed-dim": "#f0bd8b",
+                        "on-tertiary-fixed": "#321113",
+                        "primary-fixed-dim": "#c8c6c2",
+                        "primary-container": "#f9f7f2",
+                        "on-primary-fixed-variant": "#474744",
+                        "secondary-container": "#ffca98",
+                        "tertiary-fixed": "#ffdad9",
+                        "surface-dim": "#dcd9d9",
+                        "secondary": "#7d562d",
+                        "on-tertiary-container": "#946565",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary-container": "#fff5f4",
+                        "tertiary": "#7f5253",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e4e2e1",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c7c7bf",
+                        "on-tertiary-fixed-variant": "#653b3c",
+                        "outline": "#777871",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#e4e2dd",
+                        "surface-container-high": "#eae7e7",
+                        "on-surface-variant": "#464742",
+                        "on-secondary-fixed-variant": "#623f18",
+                        "surface-container-low": "#f6f3f2",
+                        "on-surface": "#1b1c1c",
+                        "on-primary-container": "#71716d",
+                        "primary": "#5e5e5b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "gutter": "32px",
+                        "stack-lg": "48px",
+                        "section-padding-mobile": "64px",
+                        "unit": "8px",
+                        "stack-md": "24px",
+                        "section-padding-desktop": "120px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Manrope"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "nav-link": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-sm": ["Playfair Display"],
+                        "label-caps": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "nav-link": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background-color: rgba(252, 249, 248, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .ambient-shadow {
+            box-shadow: 0 20px 40px -10px rgba(127, 82, 83, 0.08);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Form validation styles */
+        .error-message {
+            display: none;
+            color: #ba1a1a;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+        .error-message.show {
+            display: block;
+        }
+        input.input-error,
+        textarea.input-error {
+            border-color: #ba1a1a !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300" id="main-nav">
+    <div class="flex justify-between items-center px-gutter py-stack-sm max-w-container-max mx-auto">
+        <a class="font-display-lg text-headline-sm tracking-tight text-on-background" href="#">Bouquet</a>
+        
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex space-x-8 items-center">
+            <a class="font-nav-link text-nav-link text-primary border-b border-primary pb-1 transition-colors duration-200" href="#">Home</a>
+            <a class="font-nav-link text-nav-link text-on-surface-variant hover:text-primary transition-colors duration-300" href="#treatments">Treatments</a>
+            <a class="font-nav-link text-nav-link text-on-surface-variant hover:text-primary transition-colors duration-300" href="#how-it-works">How It Works</a>
+            <a class="font-nav-link text-nav-link text-on-surface-variant hover:text-primary transition-colors duration-300" href="#stories">Stories</a>
+            <a class="font-nav-link text-nav-link text-on-surface-variant hover:text-primary transition-colors duration-300" href="#faq">FAQ</a>
+            <a class="font-nav-link text-nav-link text-on-surface-variant hover:text-primary transition-colors duration-300" href="#contact">Contact</a>
+        </div>
+        
+        <!-- Desktop CTA -->
+        <a class="hidden md:inline-flex bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 rounded hover:bg-secondary transition-colors duration-300" href="#lead-form">
+            Create Their Moment
+        </a>
+        
+        <!-- Mobile Hamburger -->
+        <button class="md:hidden text-on-background" id="menu-toggle">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </div>
+    
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-menu absolute top-full left-0 w-full bg-background shadow-lg md:hidden" id="mobile-menu">
+        <div class="flex flex-col space-y-4 px-gutter py-8">
+            <a class="font-nav-link text-nav-link text-primary hover:text-secondary transition-colors" href="#">Home</a>
+            <a class="font-nav-link text-nav-link text-on-surface-variant hover:text-primary transition-colors" href="#treatments">Treatments</a>
+            <a class="font-nav-link text-nav-link text-on-surface-variant hover:text-primary transition-colors" href="#how-it-works">How It Works</a>
+            <a class="font-nav-link text-nav-link text-on-surface-variant hover:text-primary transition-colors" href="#stories">Stories</a>
+            <a class="font-nav-link text-nav-link text-on-surface-variant hover:text-primary transition-colors" href="#faq">FAQ</a>
+            <a class="font-nav-link text-nav-link text-on-surface-variant hover:text-primary transition-colors" href="#contact">Contact</a>
+            <a class="inline-flex justify-center items-center bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 rounded hover:bg-secondary transition-colors duration-300 w-full" href="#lead-form">
+                Create Their Moment
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- 1. Cinematic Hero -->
+<section class="relative min-h-[921px] flex items-center pt-24 md:pt-0">
+    <div class="absolute inset-0 z-0">
+        <div class="bg-cover bg-center w-full h-full" style="background-image: url('https://images.unsplash.com/photo-1519671482677-504be0ffbc9d?w=1200&h=900&fit=crop')"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-container-max mx-auto px-gutter w-full grid grid-cols-1 md:grid-cols-12 gap-gutter">
+        <div class="md:col-span-6 lg:col-span-5 flex flex-col justify-center reveal active">
+            <span class="font-label-caps text-label-caps text-tertiary tracking-widest mb-stack-md block">MORE THAN A SURPRISE</span>
+            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-stack-md">
+                Turn an ordinary day into a memory they'll never forget.
+            </h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-lg max-w-md">
+                Tell us about the person you love, what makes them special, and the moment you want to create. We curate the rest.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-stack-sm">
+                <a class="inline-flex justify-center items-center bg-primary text-on-primary font-label-caps text-label-caps px-8 py-4 rounded hover:bg-secondary transition-colors duration-300" href="#lead-form">
+                    Create Their Moment <span class="material-symbols-outlined ml-2 text-[16px]">arrow_forward</span>
+                </a>
+                <a class="inline-flex justify-center items-center bg-transparent border border-outline text-on-background font-label-caps text-label-caps px-8 py-4 rounded hover:bg-surface-container transition-colors duration-300" href="#how-it-works">
+                    See How It Works
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Emotional Hook -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-container-lowest">
+    <div class="max-w-3xl mx-auto px-gutter text-center reveal">
+        <h2 class="font-headline-md text-headline-md text-on-background leading-relaxed">
+            "A gift can be opened. <br/>
+            <span class="text-tertiary italic">A memory stays.</span>"
+        </h2>
+    </div>
+</section>
+
+<!-- 3. Cinematic Story Section -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-container" id="treatments">
+    <div class="max-w-container-max mx-auto px-gutter">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center mb-stack-lg">
+            <div class="reveal">
+                <span class="font-label-caps text-label-caps text-tertiary tracking-widest mb-stack-sm block">THE JOURNEY</span>
+                <h2 class="font-headline-md text-headline-md text-on-background mb-stack-md">What is a Treatment?</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-md">
+                    A Treatment is a perfectly orchestrated experience designed entirely around the person you love. We take your memories, their favorite things, and a seemingly ordinary day, and weave them into a cinematic surprise.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-4 reveal delay-100">
+                <div class="bg-surface p-6 rounded-lg ambient-shadow">
+                    <span class="material-symbols-outlined text-secondary mb-4 block text-3xl">favorite</span>
+                    <h3 class="font-body-lg font-semibold text-on-background mb-2">The Idea</h3>
+                    <p class="font-body-md text-on-surface-variant">You tell us about mom, her upcoming 60th, and her favorite peaceful temple.</p>
+                </div>
+                <div class="bg-surface p-6 rounded-lg ambient-shadow">
+                    <span class="material-symbols-outlined text-secondary mb-4 block text-3xl">auto_awesome</span>
+                    <h3 class="font-body-lg font-semibold text-on-background mb-2">The Plan</h3>
+                    <p class="font-body-md text-on-surface-variant">We design a peaceful morning walk, coordinate the family, and arrange her favorite yellow roses.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-surface rounded-xl overflow-hidden ambient-shadow reveal delay-200">
+            <div class="p-12 md:p-24 text-center">
+                <p class="font-headline-sm text-tertiary italic mb-8">It's her 60th birthday...</p>
+                <p class="font-headline-sm text-on-surface-variant mb-8">She arrives at the temple for what she thinks is a quiet family prayer...</p>
+                <p class="font-headline-sm text-on-surface-variant mb-8">Instead, she finds a path lined with her favorite yellow roses...</p>
+                <p class="font-headline-sm text-on-surface-variant mb-8">Suddenly, distant family members she hasn't seen in years step out to greet her...</p>
+                <h3 class="font-display-lg text-on-background mt-12">That's a Treatment.</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. Treatment Categories -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-container-lowest">
+    <div class="max-w-container-max mx-auto px-gutter">
+        <div class="text-center mb-stack-lg reveal">
+            <span class="font-label-caps text-label-caps text-tertiary tracking-widest mb-stack-sm block">CURATED EXPERIENCES</span>
+            <h2 class="font-headline-md text-headline-md text-on-background">Moments we craft</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+            <!-- Category 1 -->
+            <div class="group cursor-pointer reveal delay-100">
+                <div class="relative h-80 rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10"></div>
+                    <img alt="Birthday Surprises" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZrblmzSXFkOTxncYAWnhW4hXGmbxexUEZyzV0xHX57FCa5KMqh6jcCca2CvpWiOp8QmRE_2lPJK6L6yZE0tjI9Kd5TuCHglCCbwZnOLA3I-HvyFf5-3AsOYP0s9Xw70HtgxtOMQVO5EaMrX-D0THuJNxrXDjcE3kBtcw5gDqwD3fj6mO5Y7Bn1h4__W1pRASCvk9Ri0DbLReZoJ6d09NQxtG_633FXcQuL00AKgkd0uF-VoEYEvObYA"/>
+                </div>
+                <h3 class="font-headline-sm text-on-background mb-2 group-hover:text-tertiary transition-colors">Milestone Birthdays</h3>
+                <p class="font-body-md text-on-surface-variant">Turning a year older into a celebration of a lifetime.</p>
+            </div>
+            
+            <!-- Category 2 -->
+            <div class="group cursor-pointer reveal delay-200">
+                <div class="relative h-80 rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10"></div>
+                    <img alt="Parent Appreciation" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD53XVd7h5B_0Tx1Swzck8oRAe9pT2-RF6z-mK5D-gUp7zt4i0DCoy647DharN8SBGf86XgKjyVBx6ehgT1gjSkaPJZf4EgiuM95WEs8Ik-YHhftAFs5V2acOe2CzkkLBRVRHerx5YoC8x-ssP5RJHFT0-L9DXmaAUljGDuhucgk_A-geTD9VLo10w3KDbResm_GWK8mWU1Pi5o5jIsS2rnu5c-v3COuswWBEjW-vOWbrpmRdJ1ecBFJQ"/>
+                </div>
+                <h3 class="font-headline-sm text-on-background mb-2 group-hover:text-tertiary transition-colors">Honoring Parents</h3>
+                <p class="font-body-md text-on-surface-variant">Saying thank you for a lifetime of unconditional love.</p>
+            </div>
+            
+            <!-- Category 3 -->
+            <div class="group cursor-pointer reveal delay-300">
+                <div class="relative h-80 rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10"></div>
+                    <img alt="Proposals" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtGZxU66qBIYZqrE16iJvN1MjK4GJW3JKcV8dEqahGOcuP8DarHUPVr-3Du3_YkhML1o0fff3n-zLY6oswjFp4n8ZjbOKplvIMqjX0yEUJ9359jC1n45C8lJC0d-v9FP9VgJT9-AqeS6BCrIq6p1C0BE1vp23X9rd4hWzrAWod3LBFlNFYIOBKBOXzi3evCxgWcfCJNVehqXp35x3O-DySnTUmqH5r1zr6QOvHCcZebCNvOT8huR3UwQ"/>
+                </div>
+                <h3 class="font-headline-sm text-on-background mb-2 group-hover:text-tertiary transition-colors">Proposals</h3>
+                <p class="font-body-md text-on-surface-variant">The perfect setting for the most important question.</p>
+            </div>
+            
+            <!-- Category 4 -->
+            <div class="group cursor-pointer reveal delay-400">
+                <div class="relative h-80 rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10"></div>
+                    <img alt="Just Because" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGsGZxv4sEYeh07Wc16gKylS708RKy_99-7zBlgyjxDH6Miku3RzBh58mtLu3FBZRjwRwJiuQSyWknpXC4Xaw_L8gT_9amwVguQDNxPlAvhva18rs7f04Rb44PyMHvtZqbgIG3Y-rNk6Z9_dvGFhfdoUGqZLBLwUXV9Vf5G0UdXqfu5YtvRI0wys-9Jr_fyWTQzlcbkKc_FSdRrK53gtOBiXUDWaeLPh4kvIP_5JEj6MoQhQFLLxlTgw"/>
+                </div>
+                <h3 class="font-headline-sm text-on-background mb-2 group-hover:text-tertiary transition-colors">Just Because</h3>
+                <p class="font-body-md text-on-surface-variant">Because everyday love deserves to be celebrated.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Personalized Plan Section -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-container" id="how-it-works">
+    <div class="max-w-container-max mx-auto px-gutter">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center">
+            <div class="order-2 lg:order-1 reveal">
+                <div class="relative rounded-2xl overflow-hidden ambient-shadow h-[600px] bg-surface-container-high">
+                    <img alt="Planning a surprise" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHgf1IEozfxwboOIsKfK-5fOU82ubtn-NLFWXAtasPUIhcuKYNngYp2GRGxpP400W2BaLkfBQ1NbGFd7Q4CxbciHlArlDkfXvWWCENqR5WScRVngkSfMh8JieMyRqtwXXaXm_OiqETAa3EVKoN-OfYQd3LMr8sFUjKtgL2kLixtGEsI_b8mEx752w8_-ZQGgbW-TLiTjI_XgSoJs1iCv5RPHHFxEiOlmvJZ4YPXfxKshhqcLXyiibEHQ"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 text-white">
+                        <p class="font-headline-sm italic">"They handled every detail. I just got to enjoy the moment."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-1 lg:order-2 reveal delay-100">
+                <span class="font-label-caps text-label-caps text-tertiary tracking-widest mb-stack-sm block">THE PROCESS</span>
+                <h2 class="font-headline-md text-headline-md text-on-background mb-stack-md">Let's turn your idea into a real plan.</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-lg">
+                    You don't need to have it all figured out. Just tell us who they are and what they love. We handle the logistics, the coordination, and the execution.
+                </p>
+                <ul class="space-y-6">
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-secondary mr-4 mt-1">check_circle</span>
+                        <div>
+                            <h4 class="font-body-lg font-semibold text-on-background">Dedicated Curator</h4>
+                            <p class="font-body-md text-on-surface-variant">A personal point of contact to design and manage your experience.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-secondary mr-4 mt-1">check_circle</span>
+                        <div>
+                            <h4 class="font-body-lg font-semibold text-on-background">End-to-End Coordination</h4>
+                            <p class="font-body-md text-on-surface-variant">From venues and vendors to family wrangling, we handle it all silently.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-secondary mr-4 mt-1">check_circle</span>
+                        <div>
+                            <h4 class="font-body-lg font-semibold text-on-background">Professional Capture</h4>
+                            <p class="font-body-md text-on-surface-variant">Discreet photographers and videographers to capture the genuine reaction.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. Statistics Section -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-primary text-on-primary">
+    <div class="max-w-container-max mx-auto px-gutter text-center reveal">
+        <h2 class="font-headline-md text-headline-md mb-stack-lg">Real Moments. Real Memories.</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            <div>
+                <div class="font-display-lg text-5xl md:text-6xl text-secondary-container mb-2">500+</div>
+                <div class="font-label-caps text-label-caps tracking-widest text-primary-fixed">TREATMENTS DELIVERED</div>
+            </div>
+            <div>
+                <div class="font-display-lg text-5xl md:text-6xl text-secondary-container mb-2">15+</div>
+                <div class="font-label-caps text-label-caps tracking-widest text-primary-fixed">CITIES WORLDWIDE</div>
+            </div>
+            <div>
+                <div class="font-display-lg text-5xl md:text-6xl text-secondary-container mb-2">1M+</div>
+                <div class="font-label-caps text-label-caps tracking-widest text-primary-fixed">TEARS OF JOY</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. Stories/Portfolio -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-container-lowest" id="stories">
+    <div class="max-w-container-max mx-auto px-gutter">
+        <div class="text-center mb-stack-lg reveal">
+            <span class="font-label-caps text-label-caps text-tertiary tracking-widest mb-stack-sm block">CASE STUDIES</span>
+            <h2 class="font-headline-md text-headline-md text-on-background">Stories we've told</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+            <!-- Story 1 -->
+            <div class="bg-surface rounded-xl overflow-hidden ambient-shadow group cursor-pointer reveal delay-100">
+                <div class="relative h-64 overflow-hidden">
+                    <img alt="Amma's Birthday" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6cpjzjbUJczjE-TxE-4whin3-AX5vEAlvSIYv6zVYiupjjf3rV-2zR3mV3AtaCE9tD4V3fFhixrv4Yrgpuw1M54hrWl1PnKri8k3GMhGFCFX96NQqZevY2CvC7rvbMMaxFt4HMv0Ic6MCIK6CNgErM9qcIx_sKOsa5aec8C9tzjzYSWxdWSeJjKbC3dJRU1_L8_4gENsBjzIX5c9DBI6jfYrg41n2IILwWKj6zM-cGO6YTqFV5JfZ1w"/>
+                </div>
+                <div class="p-8">
+                    <span class="text-secondary font-label-caps mb-2 block">60TH BIRTHDAY</span>
+                    <h3 class="font-headline-sm text-on-background mb-4">Amma's Peaceful Morning</h3>
+                    <p class="font-body-md text-on-surface-variant mb-6 line-clamp-3">
+                        A seemingly regular Sunday morning walk turned into a gathering of her closest friends from the past 40 years, waiting at her favorite cafe with her favorite jasmine flowers.
+                    </p>
+                    <span class="text-primary font-nav-link group-hover:text-secondary transition-colors inline-flex items-center">
+                        Read Story <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Story 2 -->
+            <div class="bg-surface rounded-xl overflow-hidden ambient-shadow group cursor-pointer reveal delay-200">
+                <div class="relative h-64 overflow-hidden">
+                    <img alt="Proposal" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1ExEJDJjrOvyTTeCPp0by5yIzUFRCKRAaBD7FpUCdA3p0C01vyjC6BqT7i4j6_MotD2fQYKQhAIyqJCarP0gIDLADboouQJDJnRw7GfKKjCdaozcJBYUq3rkGxyg9fIq9Z72lHZNlZpKlBo7tE0PaJkFlA1OqiiWu6J80JwrEzR_LpHrJ7gr8aLE-KsK7saFj7ZMRJlwa1BAi9ymMzcVw_z7qU1mhaGa9bWyLVKdYJcSZLel5NybX7w"/>
+                </div>
+                <div class="p-8">
+                    <span class="text-secondary font-label-caps mb-2 block">PROPOSAL</span>
+                    <h3 class="font-headline-sm text-on-background mb-4">The Gallery Heist</h3>
+                    <p class="font-body-md text-on-surface-variant mb-6 line-clamp-3">
+                        We rented out a small art gallery and replaced the main exhibit with paintings depicting milestones in their relationship, leading up to the final blank canvas waiting for a 'Yes'.
+                    </p>
+                    <span class="text-primary font-nav-link group-hover:text-secondary transition-colors inline-flex items-center">
+                        Read Story <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 8. Testimonials & FAQ -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-container" id="faq">
+    <div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-stack-lg">
+        <!-- Testimonials -->
+        <div class="reveal">
+            <span class="font-label-caps text-label-caps text-tertiary tracking-widest mb-stack-sm block">KIND WORDS</span>
+            <h2 class="font-headline-md text-headline-md text-on-background mb-stack-lg">What they say</h2>
+            <div class="space-y-6">
+                <div class="bg-surface p-8 rounded-xl ambient-shadow">
+                    <div class="flex text-secondary mb-4">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                    </div>
+                    <p class="font-body-lg italic text-on-surface-variant mb-4">"I've never seen my father cry before. The way Bouquet wove his childhood memories into the dinner was nothing short of magic. Worth every penny."</p>
+                    <p class="font-label-caps text-on-background">— SARAH J., FOR HER FATHER'S 70TH</p>
+                </div>
+                <div class="bg-surface p-8 rounded-xl ambient-shadow">
+                    <div class="flex text-secondary mb-4">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                    </div>
+                    <p class="font-body-lg italic text-on-surface-variant mb-4">"I wanted to propose but had zero creative ideas. They took a 15-minute phone call about our relationship and turned it into a day I'll never forget."</p>
+                    <p class="font-label-caps text-on-background">— MICHAEL T., PROPOSAL</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ -->
+        <div class="reveal delay-100">
+            <span class="font-label-caps text-label-caps text-tertiary tracking-widest mb-stack-sm block">FAQ</span>
+            <h2 class="font-headline-md text-headline-md text-on-background mb-stack-lg">Common questions</h2>
+            <div class="space-y-4">
+                <details class="bg-surface rounded-xl ambient-shadow group" open="">
+                    <summary class="flex justify-between items-center font-body-lg font-semibold cursor-pointer list-none p-6 text-on-background">
+                        How much does a Treatment cost?
+                        <span class="transition group-open:rotate-180">
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </span>
+                    </summary>
+                    <div class="text-on-surface-variant font-body-md p-6 pt-0">
+                        Our curations start at $2,500. The final cost depends on the complexity of the event, venue rentals, required vendors, and location. We provide a full transparent breakdown before any commitment.
+                    </div>
+                </details>
+                
+                <details class="bg-surface rounded-xl ambient-shadow group">
+                    <summary class="flex justify-between items-center font-body-lg font-semibold cursor-pointer list-none p-6 text-on-background">
+                        How much notice do you need?
+                        <span class="transition group-open:rotate-180">
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </span>
+                    </summary>
+                    <div class="text-on-surface-variant font-body-md p-6 pt-0">
+                        Ideally, we need 4-6 weeks to plan and execute a seamless experience. For more complex requests involving international travel or rare bookings, 2-3 months is preferred.
+                    </div>
+                </details>
+                
+                <details class="bg-surface rounded-xl ambient-shadow group">
+                    <summary class="flex justify-between items-center font-body-lg font-semibold cursor-pointer list-none p-6 text-on-background">
+                        Do you handle photography?
+                        <span class="transition group-open:rotate-180">
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </span>
+                    </summary>
+                    <div class="text-on-surface-variant font-body-md p-6 pt-0">
+                        Yes. Professional, discreet documentation (photo and/or video) is included in almost all of our packages, as capturing the memory is a core part of the Treatment.
+                    </div>
+                </details>
+                
+                <details class="bg-surface rounded-xl ambient-shadow group">
+                    <summary class="flex justify-between items-center font-body-lg font-semibold cursor-pointer list-none p-6 text-on-background">
+                        What if I just want a simple dinner?
+                        <span class="transition group-open:rotate-180">
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </span>
+                    </summary>
+                    <div class="text-on-surface-variant font-body-md p-6 pt-0">
+                        We specialize in curated, multi-layered surprise experiences. If you are just looking for a restaurant reservation or a standard party planner, we might not be the best fit.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 9. Primary Lead Form -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-container-lowest" id="lead-form">
+    <div class="max-w-4xl mx-auto px-gutter reveal">
+        <div class="bg-surface p-8 md:p-12 rounded-2xl ambient-shadow border border-surface-variant">
+            <div class="text-center mb-10">
+                <span class="font-label-caps text-label-caps text-tertiary tracking-widest mb-2 block">BEGIN THE JOURNEY</span>
+                <h2 class="font-headline-md text-headline-md text-on-background mb-4">Tell us about your person</h2>
+                <p class="font-body-md text-on-surface-variant">We'll be in touch soon to discuss your moment.</p>
+            </div>
+            
+            <!-- Success State -->
+            <div id="success-state" class="hidden text-center py-12">
+                <div class="text-6xl mb-4">❤️</div>
+                <h3 class="font-headline-md text-on-background mb-4">Your story has been received</h3>
+                <p class="font-body-lg text-on-surface-variant mb-8">We'll be in touch soon to talk about your moment.</p>
+            </div>
+            
+            <!-- Form -->
+            <form id="contact-form" class="space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Name Field -->
+                    <div>
+                        <label class="block font-label-caps text-on-surface-variant mb-2" for="name">Your Name *</label>
+                        <input class="w-full bg-surface-container border border-surface-variant focus:border-primary focus:ring-0 rounded-lg p-4 font-body-md text-on-background transition-colors" id="name" placeholder="Jane Doe" type="text"/>
+                        <div class="error-message" id="name-error"></div>
+                    </div>
+                    
+                    <!-- Email Field -->
+                    <div>
+                        <label class="block font-label-caps text-on-surface-variant mb-2" for="email">Email Address *</label>
+                        <input class="w-full bg-surface-container border border-surface-variant focus:border-primary focus:ring-0 rounded-lg p-4 font-body-md text-on-background transition-colors" id="email" placeholder="jane@example.com" type="email"/>
+                        <div class="error-message" id="email-error"></div>
+                    </div>
+                </div>
+                
+                <!-- Phone Field -->
+                <div>
+                    <label class="block font-label-caps text-on-surface-variant mb-2" for="phone">Phone Number *</label>
+                    <input class="w-full bg-surface-container border border-surface-variant focus:border-primary focus:ring-0 rounded-lg p-4 font-body-md text-on-background transition-colors" id="phone" placeholder="+91 98765 43210" type="tel"/>
+                    <div class="error-message" id="phone-error"></div>
+                </div>
+                
+                <div class="text-center pt-4">
+                    <button class="inline-flex justify-center items-center bg-primary text-on-primary font-label-caps text-label-caps px-10 py-4 rounded hover:bg-secondary transition-colors duration-300 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed" id="submit-btn" type="submit">
+                        <span id="btn-text">Request a Consultation</span>
+                        <span class="material-symbols-outlined ml-2 text-[16px]">arrow_forward</span>
+                    </button>
+                    <p class="font-body-md text-sm text-on-surface-variant mt-4">Consultations are complimentary and completely confidential.</p>
+                </div>
+            </form>
+            
+            <!-- Error State -->
+            <div id="error-state" class="hidden text-center py-12">
+                <div class="text-6xl mb-4">⚠️</div>
+                <h3 class="font-headline-md text-on-background mb-4">Something went wrong</h3>
+                <p class="font-body-lg text-on-surface-variant mb-8">Please try again or contact us directly on WhatsApp.</p>
+                <button class="inline-flex justify-center items-center bg-primary text-on-primary font-label-caps text-label-caps px-10 py-4 rounded hover:bg-secondary transition-colors duration-300" onclick="resetForm()">
+                    Try Again
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-surface-container-lowest py-section-padding-desktop border-t border-surface-container" id="contact">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-gutter max-w-container-max mx-auto">
+        <div class="col-span-1 md:col-span-1">
+            <a class="font-display-lg text-headline-sm text-on-background opacity-80 hover:opacity-100 transition-opacity" href="#">Bouquet</a>
+        </div>
+        <div class="col-span-1 md:col-span-3 flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-md">
+            <p class="font-body-md text-body-md text-on-surface-variant">© 2024 Bouquet Treatments. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Privacy Policy</a>
+                <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Terms of Service</a>
+                <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Instagram</a>
+                <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ==============================================
+    // CONFIGURATION
+    // ==============================================
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwrYdnDitVHNwCkfrZegRAXRqThT3vyBIaJ_DA8EKSXGrfHZ5AIGb0QU3ni9zzb4CyRiA/exec';
+
+    // ==============================================
+    // MOBILE MENU
+    // ==============================================
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu when a link is clicked
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+    });
+
+    // ==============================================
+    // NAVIGATION SCROLL EFFECT
+    // ==============================================
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('main-nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('shadow-sm');
+            nav.style.backgroundColor = 'rgba(252, 249, 248, 0.9)';
+        } else {
+            nav.classList.remove('shadow-sm');
+            nav.style.backgroundColor = 'rgba(252, 249, 248, 0.7)';
+        }
+    });
+
+    // ==============================================
+    // REVEAL ANIMATIONS
+    // ==============================================
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    revealElements.forEach(el => {
+        if (!el.classList.contains('active')) {
+            revealObserver.observe(el);
+        }
+    });
+
+    // ==============================================
+    // FORM VALIDATION & SUBMISSION
+    // ==============================================
+    const form = document.getElementById('contact-form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const submitBtn = document.getElementById('submit-btn');
+    const successState = document.getElementById('success-state');
+    const errorState = document.getElementById('error-state');
+
+    console.log('Form elements loaded:', {
+        form: form ? 'found' : 'NOT FOUND',
+        nameInput: nameInput ? 'found' : 'NOT FOUND',
+        emailInput: emailInput ? 'found' : 'NOT FOUND',
+        phoneInput: phoneInput ? 'found' : 'NOT FOUND'
+    });
+
+    // Validation functions
+    function validateName(value) {
+        return value.trim().length > 0;
+    }
+
+    function validateEmail(value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(value);
+    }
+
+    function validatePhone(value) {
+        const phoneRegex = /^[0-9\s\-\+\(\)]{7,}$/;
+        return phoneRegex.test(value);
+    }
+
+    function showError(inputId, message) {
+        const input = document.getElementById(inputId);
+        const errorEl = document.getElementById(`${inputId}-error`);
+        input.classList.add('input-error');
+        errorEl.textContent = message;
+        errorEl.classList.add('show');
+    }
+
+    function clearError(inputId) {
+        const input = document.getElementById(inputId);
+        const errorEl = document.getElementById(`${inputId}-error`);
+        input.classList.remove('input-error');
+        errorEl.classList.remove('show');
+    }
+
+    // Real-time validation
+    nameInput.addEventListener('blur', () => {
+        if (!validateName(nameInput.value)) {
+            showError('name', 'Please enter your name.');
+        } else {
+            clearError('name');
+        }
+    });
+
+    emailInput.addEventListener('blur', () => {
+        if (!validateEmail(emailInput.value)) {
+            showError('email', 'Please enter a valid email address.');
+        } else {
+            clearError('email');
+        }
+    });
+
+    phoneInput.addEventListener('blur', () => {
+        if (!validatePhone(phoneInput.value)) {
+            showError('phone', 'Please enter a valid phone number.');
+        } else {
+            clearError('phone');
+        }
+    });
+
+    // Form submission
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Clear previous errors
+        ['name', 'email', 'phone'].forEach(id => clearError(id));
+
+        // Validate all fields
+        let isValid = true;
+        
+        if (!validateName(nameInput.value)) {
+            showError('name', 'Please enter your name.');
+            isValid = false;
+        }
+
+        if (!validateEmail(emailInput.value)) {
+            showError('email', 'Please enter a valid email address.');
+            isValid = false;
+        }
+
+        if (!validatePhone(phoneInput.value)) {
+            showError('phone', 'Please enter a valid phone number.');
+            isValid = false;
+        }
+
+        if (!isValid) {
+            return;
+        }
+
+        // Disable button to prevent double submission
+        if (submitBtn.disabled) {
+            return;
+        }
+        
+        submitBtn.disabled = true;
+        document.getElementById('btn-text').textContent = 'Sending...';
+
+        try {
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const phone = phoneInput.value.trim();
+
+            console.log('Form submission - Data:', {name, email, phone});
+
+            const params = new URLSearchParams({
+                name: name,
+                email: email,
+                phone: phone
+            });
+            
+            const url = SCRIPT_URL + "?" + params.toString();
+            console.log('URL:', url);
+
+            // Single submission method - Image pixel (most reliable for no-cors)
+            const img = new Image();
+            img.onerror = img.onload = function() {
+                console.log('Submission completed');
+                // Show success state
+                form.style.display = 'none';
+                successState.classList.remove('hidden');
+            };
+            img.src = url;
+
+        } catch (error) {
+            console.error('Error:', error);
+            submitBtn.disabled = false;
+            document.getElementById('btn-text').textContent = 'Request a Consultation';
+        }
+    });
+
+    // Reset form function
+    function resetForm() {
+        form.reset();
+        form.style.display = 'block';
+        errorState.classList.add('hidden');
+        successState.classList.add('hidden');
+        submitBtn.disabled = false;
+        document.getElementById('btn-text').textContent = 'Request a Consultation';
+    }
+</script>
+
+</body>
+</html>
